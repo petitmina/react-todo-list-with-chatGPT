@@ -1,0 +1,126 @@
+/* TodoList.module.css */
+
+.todo-list-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    text-align: center; /* 가운데 정렬 추가 */
+  }
+  
+  .todo-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .todo-list li:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+  }
+  
+  .todo-list li.completed {
+    background-color: #e6f7ff;
+  }
+  
+  .todo-list li span {
+    cursor: pointer;
+    flex-grow: 1;
+    font-size: 16px;
+  }
+  
+  .todo-list li button {
+    background-color: #ff5c5c;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .todo-list li button:hover {
+    background-color: #ff4444;
+  }
+  
+  .input-container {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+  }
+  
+  .input-container input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .input-container button {
+    background-color: #4caf50;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .input-container button:hover {
+    background-color: #45a049;
+  }
+
+  .completed-todos-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    background-color: #f3f3f3;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .completed-todo {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .completed-todos-header button {
+    background-color: #4caf50;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .completed-todos-header button:hover {
+    background-color: #45a049;
+  }
