@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TodoList.module.css';
 import Modal from './Modal';
+import DragAndDrop from './DragAndDrop'; 
 // import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 function TodoList() {
@@ -85,16 +86,21 @@ function TodoList() {
     closeModal();
   };
 
+  const reorderTodos = (oldIndex, newIndex) => {
+    const updatedTodos = [...todos];
+    const [reorderedItem] = updatedTodos.splice(oldIndex, 1);
+    updatedTodos.splice(newIndex, 0, reorderedItem);
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className={styles['todo-list-container']}>
       <h1>Todo List</h1>
-      <ul className={styles['todo-list']}>
+      <DragAndDrop  onDrop={reorderTodos}>
         {todos.map((todo, index) => (
-          <li
+          <div
             key={index}
-            className={`${styles['todo-item']} ${
-              todo.completed ? styles.completed : ''
-            }`}
+            className={`${styles['todo-item']} ${todo.completed ? styles.completed : ''}`}
           >
             <input
               type="checkbox"
@@ -110,9 +116,9 @@ function TodoList() {
               style={{ width: '40px' }}
             />
             <button onClick={() => removeTodo(index)}>Remove</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </DragAndDrop>
       <div className={styles['input-container']}>
         <input
           type="text"
