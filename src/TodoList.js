@@ -1,11 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './TodoList.module.css';
+import Modal from './Modal';
+// import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
   const [completedTodos, setCompletedTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [inputPriority, setInputPriority] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedTodos = localStorage.getItem('todos');
+    const savedCompletedTodos = localStorage.getItem('completedTodos');
+
+    if (savedTodos) {
+      setTodos(JSON.parse(savedTodos));
+    }
+
+    if (savedCompletedTodos) {
+      setCompletedTodos(JSON.parse(savedCompletedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
+    localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
+  }, [completedTodos]);
 
   const addTodo = () => {
     if (inputValue.trim() !== '') {
@@ -43,6 +68,21 @@ function TodoList() {
 
   const removeAllCompleted = () => {
     setCompletedTodos([]);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLogin = (username, password) => {
+    // 실제 로그인 로직을 구현합니다.
+    // 로그인 성공 시 사용자 정보를 저장하고 모달을 닫습니다.
+    setUser({ username: username });
+    closeModal();
   };
 
   return (
@@ -102,6 +142,20 @@ function TodoList() {
           </li>
         ))}
       </ul>
+      {user ? (
+        <div className={styles['user-info']}>
+          Logged in as: {user.username}
+          <button className={styles['login-button']} onClick={() => setUser(null)}>Logout</button>
+        </div>
+      ) : (
+        <button className={styles['login-button']}  onClick={openModal}>Login</button>
+      )}
+
+      <Modal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        handleLogin={handleLogin}
+      />
     </div>
   );
 }

@@ -124,3 +124,15 @@
   .completed-todos-header button:hover {
     background-color: #45a049;
   }
+
+  .login-button {
+    position: absolute;
+    top: 30px; /* 원하는 top 값 조정 */
+    right: 50px; /* 원하는 right 값 조정 */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
